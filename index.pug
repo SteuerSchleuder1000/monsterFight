@@ -1,0 +1,20 @@
+doctype html
+html(lang='en')
+  head
+    //link(rel="icon" href="Images/vsLogo.png")
+    //link(rel='apple-touch-icon-precomposed', size='57x57' href='Images/vsLogo57x57.png')
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    script(src='https://www.gstatic.com/firebasejs/4.3.0/firebase.js')
+    script(src='https://cdn.plot.ly/plotly-latest.min.js')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='styles.css')
+    title MULLIGAN APP
+  body
+    .main-wrapper
+        .inputDiv
+            input(placeholder='AAECAf0EDHHQAqsExQTtBewHo7YCobcClscCz8cCoM4Cm9MCCU3AAZUDlgX7DNe2Aum6AsHBApjEAgA=' id='deckinput')
+            button#submitDeck GO!
+        .hand
+    script(src='script.js')
