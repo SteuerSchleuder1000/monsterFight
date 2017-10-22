@@ -1,5 +1,7 @@
 
 
+const githubLink = 'https://vicioussyndicate.github.io/mulliganWebApp'
+
 const DBF_IMAGES_LINK = 'https://raw.githubusercontent.com/schmich/hearthstone-card-images/master/images.json'
 const HSCARDS_LINK = 'https://api.hearthstonejson.com/v1/21517/enUS/cards.collectible.json'
 var HSCARDS
@@ -20,7 +22,9 @@ window.onload = function() {
 
 function submitDeckCode() {
     var btn = document.querySelector('#deckinput')
-    getDeck(btn.value)
+    var value = btn.value
+    if (!value) {value = 'AAECAZ8FBJG8Ary9ArnBApziAg1G8gGnBdQF9QXPBu4GrwfZrgK6vQLrwgLjywKVzgIA'}
+    getDeck(value)
 }
 
 
