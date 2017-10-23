@@ -14,15 +14,16 @@ class Player {
 
     newDeck(deckObj) {
         this.reset()
+        this.deck = []
         this.hero = {name: '', dbfId: deckObj.hsHero}
 
         let cards_x1 = deckObj.cards_x1
         let cards_x2 = deckObj.cards_x2
 
-        for (let c of cards_x1) { this.deck.push({name:'',dbfId:c, crossed: false}) }
+        for (let c of cards_x1) { this.deck.push({name:'',dbfId:c, crossed: false, img:null}) }
         for (let c of cards_x2) { 
-            this.deck.push({name:'',dbfId:c, crossed: false})
-            this.deck.push({name:'',dbfId:c, crossed: false}) 
+            this.deck.push({name:'',dbfId:c, crossed: false, img: null})
+            this.deck.push({name:'',dbfId:c, crossed: false, img: null}) 
         }
     }
 

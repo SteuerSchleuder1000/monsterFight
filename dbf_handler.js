@@ -21,7 +21,7 @@ class DBF_Handler {
         .catch(err => { throw err });
     }
 
-    loadCards() {
+    loadCards(callback) {
         fetch(this.cardJson_url)
         .then(res => res.json())
         .then((out) => {
@@ -109,6 +109,27 @@ class DBF_Handler {
         return {spare: spare, version: version, hsFormat: hsFormat, hsHero: hsHero, x1: x1, x2: x2, cards_x1: cards_x1, cards_x2: cards_x2}
     }
 
+    countWordsExpansion() {
+        let expansions = []
+        let count = []
+        for (let c of this.cardJson) {
+            let idx = expansions.indexOf(c.set)
+            if (idx == -1) {
+                let text = c.text
+                if (!text) {text = ''}
+                expansions.push(c.set)
+                count.push({expansion:c.set, count: 1, textLength: text.length})
+                idx = expansions.length-1
+            } else { 
+                let text = c.text
+                if (!text) {text = ''}
+                count[idx].count += 1
+                count[idx].textLength += text.length
+            }
+        }
 
+        for (var e of count) { if (e.count) {e.textLength/=e.count} }
+        console.log('expansions',count)
+    }
     
 }

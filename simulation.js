@@ -15,7 +15,7 @@ class Simulation {
 
         this.dbf = new DBF_Handler()
         this.dbf.loadImages()
-        //this.dbf.loadCards()
+        this.dbf.loadCards()
         this.player = new Player()
         this.opponent = this.newOpponent()
         
@@ -88,17 +88,27 @@ class Simulation {
         for (let c of this.player.hand) {
             let cardWrapper = document.createElement('div')
             cardWrapper.className = 'card-wrapper'
-            
-            let img = document.createElement('img')
-            let imgUrl = this.dbf.match_dbfId_to_imgUrl(c.dbfId).url
-            if (!imgUrl) {console.log('Error: img Url not found:',c); continue}
 
-            img.src = imgUrl
-            img.className = 'card'
-            img.id = this.player.hand.indexOf(c)
-            img.onclick = this.imageClick.bind(this)
+            let img
+            let idx = this.player.hand.indexOf(c)
+            let crossImg = this.getCrossImg(idx)
 
-            let crossImg = this.getCrossImg(img.id)
+            if (!c.img) {
+                img = document.createElement('img')
+                let imgUrl = this.dbf.match_dbfId_to_imgUrl(c.dbfId).url
+                if (!imgUrl) {console.log('Error: img Url not found:',c); continue}
+
+                img.src = imgUrl
+                img.className = 'card'
+                img.id = idx
+                img.onclick = this.imageClick.bind(this)
+
+                c.img = img
+
+            } else { 
+                img = c.img 
+                img.id = idx
+            }
             
 
             cardWrapper.appendChild(img)
@@ -106,8 +116,6 @@ class Simulation {
 
             this.cardWrappers.push(cardWrapper)
             this.handDiv.appendChild(cardWrapper)
-            
-            
         }
     }
 
@@ -160,11 +168,6 @@ class Simulation {
         this.updateHand()
     }
 
-    addCard() {
-        // Todo
-    }
-
-    
 
     mulligan() {
         let hand = this.player.hand
