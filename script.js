@@ -6,8 +6,26 @@ const DBF_IMAGES_LINK = 'https://raw.githubusercontent.com/schmich/hearthstone-c
 const HSCARDS_LINK = 'https://api.hearthstonejson.com/v1/21517/enUS/cards.collectible.json'
 var HSCARDS
 var DBF_IMAGES
+const CARD_HEIGHT = '400px'
+const CROSS_HEIGHT = '200px'
 
 var PLAYER
+const HEROES = [
+    {hsClass:'Warrior',name:'',dbfId:7},
+    {hsClass:'Shaman',name:'',dbfId:40183},
+    {hsClass:'Rogue',name:'',dbfId:930},
+    {hsClass:'Paladin',name:'',dbfId:671},
+    {hsClass:'Hunter',name:'',dbfId:31},
+    {hsClass:'Druid',name:'',dbfId:274},
+    {hsClass:'Warlock',name:'',dbfId:893},
+    {hsClass:'Mage',name:'',dbfId:637},
+    {hsClass:'Priest',name:'',dbfId:813},
+]
+
+
+
+
+
 
 
 window.onload = function() {
@@ -24,6 +42,7 @@ function submitDeckCode() {
     var btn = document.querySelector('#deckinput')
     var value = btn.value
     if (!value) {value = 'AAECAZ8FBJG8Ary9ArnBApziAg1G8gGnBdQF9QXPBu4GrwfZrgK6vQLrwgLjywKVzgIA'}
+    console.log('Deckcode:',value)
     getDeck(value)
 }
 
@@ -75,10 +94,46 @@ function addImage(url,dbfId) {
     var img = document.createElement('img')
     img.src = url
     img.id = dbfId
-    img.style.height = '500px'
-    document.querySelector('.hand').appendChild(img)
+    img.style.height = CARD_HEIGHT
+    var imgDiv = document.createElement('div')
+    imgDiv.style.display = 'inline-block'
+    imgDiv.className = 'img'
+
+    
+    document.querySelector('.hand').appendChild(imgDiv)
+    imgDiv.appendChild(img)
+    imgDiv.onclick = crossImg
 }
 
+function crossImg(src) {
+    console.log(src)
+    var target = src.target.parentElement
+    var img = document.createElement('img')
+    img.style.height = CROSS_HEIGHT
+    img.className = 'cross'
+    img.src = 'Sources/cross.png'
+    target.appendChild(img)
+}
+
+
+function addOpponent() {
+
+    var opp = choice(HEROES)
+    var dbfId = opp.dbfId
+    var dbfItem = find_dbfId(dbfId)
+    if (!dbfItem) { return }
+    
+
+    var img = document.createElement('img')
+    img.src = dbfItem.url
+    img.id = dbfId
+    img.style.height = CARD_HEIGHT
+
+    var oppDiv = document.querySelector('.opponent')
+    oppDiv.innerHTML = ''
+    oppDiv.appendChild(img)
+
+}
 
 function my64(b64Data) {
     const binary = atob(b64Data);
@@ -180,6 +235,7 @@ class Player {
     }
 
     display() {
+        addOpponent()
         document.querySelector('.hand').innerHTML = ''
         addImageFromId(this.hsHero)
         for (var c of this.hand) {
@@ -209,3 +265,5 @@ function rand (min, max) {
 function randInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function choice(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
