@@ -1,5 +1,8 @@
 
 
+button
+    font-size: 150%
+    font-weight:  bold
 
 .main-wrapper
     .inputDiv
@@ -10,9 +13,25 @@
         #submitDeck
             font-size: 150%
             font-weight:  bold
+        #rankSlider
+            display block
+            width 20rem
+    .opponent
     .hand
-        .img
+        .card-wrapper
             position relative
-        .cross
-            position absolute
-            left 0
+            display inline-block
+            .card
+                position relative
+                width 200px
+            .cross
+                position absolute
+                left 0
+                width 200px
+                &.hidden
+                    display none
+    .hero
+        display block
+    #mulligan
+        font-size: 150%
+        font-weight:  bold

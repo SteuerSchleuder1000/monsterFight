@@ -16,8 +16,16 @@ html(lang='en')
         .inputDiv
             input(placeholder='Paste Deckcode in here' id='deckinput')
             button#submitDeck GO!
+            input(type='range' min='0' max='25' value='5' class='slider' id='rankSlider')
+            .rankValue Rank 5
         .opponent
-        .hero
+        
         .hand
+        button#mulligan Confirm
+        button#newGame New Game
+        .hero
             
     script(src='script.js')
+    script(src='dbf_handler.js')
+    script(src='player.js')
+    script(src='simulation.js')

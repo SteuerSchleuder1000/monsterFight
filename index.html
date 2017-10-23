@@ -17,11 +17,18 @@
       <div class="inputDiv">
         <input placeholder="Paste Deckcode in here" id="deckinput">
         <button id="submitDeck">GO!</button>
+        <input class="slider" type="range" min="0" max="25" value="5" id="rankSlider">
+        <div class="rankValue">Rank 5</div>
       </div>
       <div class="opponent"></div>
-      <div class="hero"></div>
       <div class="hand"></div>
+      <button id="mulligan">Confirm</button>
+      <button id="newGame">New Game</button>
+      <div class="hero"></div>
     </div>
     <script src="script.js"></script>
+    <script src="dbf_handler.js"></script>
+    <script src="player.js"></script>
+    <script src="simulation.js"></script>
   </body>
 </html>
