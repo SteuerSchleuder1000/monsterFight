@@ -18,7 +18,7 @@ class Simulation {
         this.dbf.loadCards()
         this.player = new Player()
         this.opponent = this.newOpponent()
-        
+
     }
 
     setupUI() {
@@ -27,29 +27,36 @@ class Simulation {
         this.deckInput = document.querySelector('#deckinput')
         this.rankSlider = document.querySelector('#rankSlider')
         this.rankInfo = document.querySelector('.rankValue')
+        this.bottomDiv = document.querySelector('.bottom')
 
         this.mulliganBtn = document.querySelector('#mulligan')
         this.newGameBtn = document.querySelector('#newGame')
         this.oppDiv = document.querySelector('.opponent')
         this.heroDiv = document.querySelector('.hero')
+        this.deckDiv  =document.querySelector('.deck')
         this.handDiv = document.querySelector('.hand')
+
 
         this.submitBtn.onclick = this.submitDeck.bind(this)
         this.mulliganBtn.onclick = this.mulligan.bind(this)
         this.newGameBtn.onclick = this.newGame.bind(this)
         this.rankSlider.oninput = this.updateSlider.bind(this)
+        this.deckDiv.onclick = this.deckClick.bind(this)
     }
 
     updateSlider() { this.rankInfo.innerHTML = 'Rank '+this.rankSlider.value; this.rank = this.rankSlider.value }
 
-
+    deckClick() { this.player.draw(1); this.displayHand() }
 
 
 
 
     submitDeck() {
         let value = this.deckInput.value
-        if(!value) { value = this.defaultDeckcode; console.log('Error: No input value > default deck')}
+        if(!value) { 
+            value = this.defaultDeckcode;
+            this.deckInput.value = this.defaultDeckcode
+            console.log('Error: No input value > default deck')}
         let deck = this.dbf.deckcode_to_dbfId(value)
         this.player.newDeck(deck)
         this.newGame()
@@ -60,9 +67,10 @@ class Simulation {
         this.newOpponent()
         this.player.reset()
         this.flipCoin()
-        this.player.draw(this.coin ? 4:3)
+        this.player.initialDraw(this.coin ? 4:3)
         this.display()
-        this.display()
+        this.loadAllDeckImages()
+        this.bottomDiv.style.display = 'flex'
     }
 
     newOpponent() { this.opponent = choice(HEROES) }
@@ -93,23 +101,9 @@ class Simulation {
             let idx = this.player.hand.indexOf(c)
             let crossImg = this.getCrossImg(idx)
 
-            if (!c.img) {
-                img = document.createElement('img')
-                let imgUrl = this.dbf.match_dbfId_to_imgUrl(c.dbfId).url
-                if (!imgUrl) {console.log('Error: img Url not found:',c); continue}
-
-                img.src = imgUrl
-                img.className = 'card'
-                img.id = idx
-                img.onclick = this.imageClick.bind(this)
-
-                c.img = img
-
-            } else { 
-                img = c.img 
-                img.id = idx
-            }
-            
+            if ( !c.img ) { this.loadCardImage(c) }
+            img = c.img
+            img.id = idx
 
             cardWrapper.appendChild(img)
             cardWrapper.appendChild(crossImg)
@@ -119,21 +113,30 @@ class Simulation {
         }
     }
 
-    displayHero() {
-        this.heroDiv.innerHTML = ''
-        let hero = this.player.hero
-        let heroUrl = this.dbf.match_dbfId_to_imgUrl(hero.dbfId).url
+    loadCardImage(c) {
         let img = document.createElement('img')
-        img.src = heroUrl
-        this.heroDiv.appendChild(img)
+        let imgUrl = this.dbf.match_dbfId_to_imgUrl(c.dbfId).url
+        if (!imgUrl) {console.log('Error: img Url not found:',c)}
+        img.src = imgUrl
+        img.className = 'card'
+        img.onclick = this.imageClick.bind(this)
+        c.img = img
+    }
+
+    loadAllDeckImages() {
+        for (let c of this.player.deck) {
+            if (!c.img) { this.loadCardImage(c) }
+        }
+    }
+
+    displayHero() {
+        let heroUrl = this.dbf.match_dbfId_to_imgUrl(this.player.hero.dbfId).url
+        this.heroDiv.src = heroUrl
     }
 
     displayOpp() {
-        this.oppDiv.innerHTML = ''
-        let heroUrl = this.dbf.match_dbfId_to_imgUrl(this.opponent.dbfId).url
-        let img = document.createElement('img')
-        img.src = heroUrl
-        this.oppDiv.appendChild(img)
+        let oppUrl = this.dbf.match_dbfId_to_imgUrl(this.opponent.dbfId).url
+        this.oppDiv.src = oppUrl
     }
 
 

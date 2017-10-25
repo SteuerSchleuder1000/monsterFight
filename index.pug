@@ -13,17 +13,40 @@ html(lang='en')
     title MULLIGAN APP
   body
     .main-wrapper
-        .inputDiv
-            input(placeholder='Paste Deckcode in here' id='deckinput')
-            button#submitDeck GO!
-            input(type='range' min='0' max='25' value='5' class='slider' id='rankSlider')
-            .rankValue Rank 5
-        .opponent
-        
+
+        .top
+            //- .opponent-wrapper
+            //-     img.opponent
+            //-     .title Opponent
+
+            .inputDiv
+                input(placeholder='Paste Deckcode in here' id='deckinput')
+                button#submitDeck GO!
+                .sliderDiv
+                    input(type='range' min='0' max='25' value='5' class='slider' id='rankSlider')
+                    .rankValue Rank 5
+            
+            //- .hero-wrapper
+            //-     img.hero
+            //-     img.deck(src='Sources/Fireside.png')
+            //-     .title You
+
+
+
+
+        .banner
         .hand
-        button#mulligan Confirm
-        button#newGame New Game
-        .hero
+        .bottom
+            .opponent-wrapper
+                img.opponent
+                .title Opponent
+            .buttons
+                button#mulligan Confirm
+                button#newGame New Game
+            .hero-wrapper
+                img.hero
+                img.deck(src='Sources/Fireside.png')
+                .title You
             
     script(src='script.js')
     script(src='dbf_handler.js')

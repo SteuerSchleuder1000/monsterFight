@@ -131,5 +131,15 @@ class DBF_Handler {
         for (var e of count) { if (e.count) {e.textLength/=e.count} }
         console.log('expansions',count)
     }
+
+    findQuests() {
+        let quests = []
+        for (let c of this.cardJson) { 
+            let m = c.mechanics
+            if (!m) {continue}
+            if (m.indexOf("QUEST") != -1) {quests.push({name:c.name, dbfId:c.dbfId}) }
+        }
+        console.log('quests',quests)
+    }
     
 }

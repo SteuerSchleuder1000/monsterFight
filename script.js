@@ -19,7 +19,7 @@ const HEROES = [
     {hsClass:'Priest',name:'',dbfId:813},
 ]
 
-
+const QUESTCARDS_dbfId = [41168,41222,41099,41856,41368,41427,41494,41499,41868]
 
 
 

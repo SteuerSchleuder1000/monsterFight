@@ -1,37 +1,135 @@
 
+$mainWidth = 1000px
+$cardHeight = 300px
+$heroHeight = 200px
+$deckHeight = 200px
+
 
 button
     font-size: 150%
     font-weight:  bold
+    &:hover
+        cursor pointer
+
+img 
+    &:hover
+        cursor pointer
 
 .main-wrapper
-    .inputDiv
-        margin 10rem
-        #deckinput
-            font-size 150%
-            width 20rem
-        #submitDeck
-            font-size: 150%
-            font-weight:  bold
-        #rankSlider
-            display block
-            width 20rem
-    .opponent
+    width $mainWidth
+    position absolute
+    background #222
+    .top
+        text-align center
+        .inputDiv
+            margin 1rem auto
+            width 25rem
+            display inline-block
+            #deckinput
+                font-size 150%
+                width 20rem
+                color #777
+            #submitDeck
+                font-size: 150%
+                font-weight:  bold
+            .sliderDiv
+                display block
+                #rankSlider
+                    display inline-block
+                    width 20rem
+                .rankValue
+                    display inline-block
+                    color white
+                    font-weight bold
+                    font-family Helvetica
+                    letter-spacing 1px
     .hand
+        margin 0 auto
+        width $mainWidth
+        height $cardHeight
+        flex-direction row
+        display flex
+        justify-content: center
+        overflow auto
         .card-wrapper
             position relative
-            display inline-block
+            transition: all 500ms linear;            
             .card
                 position relative
-                width 200px
+                height $cardHeight
             .cross
                 position absolute
                 left 0
                 width 200px
                 &.hidden
                     display none
-    .hero
+    .bottom
+        display none
+        text-align center
+        margin-top 2rem
+        margin-bottom 2rem
+        // .opponent-wrapper
+        //     display inline-block            
+        //     float left
+        //     .opponent
+        //         height 
+        //         height $heroHeight
+        //     .title
+        //         display inline-block
+        //         color white
+        //         font-family Helvetica
+        //         font-weight bold
+        .buttons
+            display inline-block
+            width 10rem
+            margin 0 auto
+            #mulligan
+                display block
+                font-weight bold
+                margin 0.2rem auto
+            #newGame
+                display block
+                font-weight bold
+                margin 0.2rem auto
+        // .hero-wrapper
+        //     display inline-block
+        //     float right
+        //     .hero
+        //         height $heroHeight
+        //     .deck
+        //         display inline-block
+        //         height $deckHeight
+        //         float right
+        //     .title
+        //         display inline-block
+        //         color white
+        //         font-family Helvetica
+        //         font-weight bold
+                
+
+.opponent-wrapper
+    display inline-block            
+    float left
+    .opponent
+        height 
+        height $heroHeight
+    .title
         display block
-    #mulligan
-        font-size: 150%
-        font-weight:  bold
+        color white
+        font-family Helvetica
+        font-weight bold
+        
+.hero-wrapper
+    display inline-block
+    float right
+    .hero
+        height $heroHeight
+    .deck
+        display inline-block
+        height $deckHeight
+        float right
+    .title
+        display block
+        color white
+        font-family Helvetica
+        font-weight bold

@@ -27,6 +27,24 @@ class Player {
         }
     }
 
+    initialDraw(nr) {
+        // Check for quest crads:
+        this.shuffle()
+        let count = 0
+        for (let i=0;i<this.deck.length;i++) {
+
+            let c = this.deck[i]
+
+            if (QUESTCARDS_dbfId.indexOf(c.dbfId) != -1) {
+                this.deck.splice(i,1)
+                this.hand.push(c)
+                count += 1
+            }
+            if (count >= nr) { break }
+        }
+        this.draw(nr-count)
+    }
+
     draw(nr) {
         this.shuffle()
         if (nr > this.deck.length) {
