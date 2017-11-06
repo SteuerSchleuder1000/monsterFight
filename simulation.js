@@ -174,11 +174,12 @@ class Simulation {
 
     mulligan() {
         let hand = this.player.hand
-        let count = 0
-        for (let c of hand) { if (c.crossed) { c.crossed = false; this.player.reshuffle(c); count += 1 } }
-        for (let c of hand) { c.crossed = false }
+        
+        for (let c of hand) { if (c.crossed) { this.player.draw(1); c.crossed = false; this.player.reshuffle(c) } }
+        //for (let c of hand) { if (c.crossed) { c.crossed = false; this.player.reshuffle(c)} }
+        //for (let c of hand) { c.crossed = false }
 
-        this.player.draw(count)
+        //this.player.draw(count)
         this.displayHand()
     }
 }
