@@ -54,6 +54,7 @@ class Player {
 
         for (let i=0;i<nr;i++) {
             let c = this.deck.pop()
+            c.crossed = false
             this.hand.push(c)
         }
     }

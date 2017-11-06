@@ -92,7 +92,7 @@ class DBF_Handler {
             res.push(r.res)
             i += r.shift/7-1
         }
-
+        console.log(res)
         var spare =     res[0]
         var version =   res[1]
         var hsFormat =  res[2]
@@ -104,7 +104,9 @@ class DBF_Handler {
         var cards_x2 =  []
 
         for (var i=6;i<6+x1;i++) { cards_x1.push(res[i]) }
-        for (var i=7+x1; i<7+x2; i++) { cards_x2.push(res[i]) }
+        for (var i=7+x1; i<7+x1+x2; i++) { cards_x2.push(res[i]) }
+        
+        console.log('cards_x1',x1,cards_x1, 'cards_x2',x2, cards_x2)
 
         return {spare: spare, version: version, hsFormat: hsFormat, hsHero: hsHero, x1: x1, x2: x2, cards_x1: cards_x1, cards_x2: cards_x2}
     }
