@@ -58,6 +58,7 @@ class Simulation {
             this.deckInput.value = this.defaultDeckcode
             console.log('Error: No input value > default deck')}
         let deck = this.dbf.deckcode_to_dbfId(value)
+        console.log(deck)
         this.player.newDeck(deck)
         this.newGame()
     }

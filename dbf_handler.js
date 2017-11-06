@@ -56,7 +56,7 @@ class DBF_Handler {
         return buffer;
     }
 
-    decodeBuffer(buf, offset) {
+    read(buf, offset) {
         var MSB = 0x80
         , REST = 0x7F
 
@@ -69,7 +69,7 @@ class DBF_Handler {
 
         do {
             if (counter >= l) {
-                this.decodeBuffer.bytes = 0
+                this.read.bytes = 0
                 throw new RangeError('Could not decode varint')
             }
             b = buf[counter++]
@@ -79,7 +79,7 @@ class DBF_Handler {
             shift += 7
         } while (b >= MSB)
 
-        this.decodeBuffer.bytes = counter - offset
+        this.read.bytes = counter - offset
 
         return {res: res, shift: shift}
     }
@@ -88,7 +88,7 @@ class DBF_Handler {
         var buf = this.b64ToBuffer(deckcode)
         var res = []
         for (var i=0; i<buf.length;i++) {
-            var r = this.decodeBuffer(buf,i)
+            var r = this.read(buf,i)
             res.push(r.res)
             i += r.shift/7-1
         }
