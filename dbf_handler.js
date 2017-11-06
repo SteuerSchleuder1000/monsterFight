@@ -92,7 +92,7 @@ class DBF_Handler {
             res.push(r.res)
             i += r.shift/7-1
         }
-
+        console.log(res)
         var spare =     res[0]
         var version =   res[1]
         var hsFormat =  res[2]
