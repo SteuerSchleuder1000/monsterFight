@@ -177,7 +177,7 @@ class Simulation {
         
         for (let c of hand) { if (c.crossed) { this.player.draw(1); c.crossed = false; this.player.reshuffle(c) } }
         //for (let c of hand) { if (c.crossed) { c.crossed = false; this.player.reshuffle(c)} }
-        //for (let c of hand) { c.crossed = false }
+        for (let c of hand) { c.crossed = false }
 
         //this.player.draw(count)
         this.displayHand()
