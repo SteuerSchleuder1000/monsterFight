@@ -104,7 +104,7 @@ class DBF_Handler {
         var cards_x2 =  []
 
         for (var i=6;i<6+x1;i++) { cards_x1.push(res[i]) }
-        for (var i=7+x1; i<7+x2; i++) { cards_x2.push(res[i]) }
+        for (var i=7+x1; i<7+x1+x2; i++) { cards_x2.push(res[i]) }
         
         console.log('cards_x1',x1,cards_x1, 'cards_x2',x2, cards_x2)
 
