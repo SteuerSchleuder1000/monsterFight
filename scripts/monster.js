@@ -15,13 +15,11 @@ class Monster {
             health: Math.random(),
             speed: Math.random(),
         }
-
         this.stats = {}
-        let statSum = 0
-        for (let a in this.stats_init) { statSum += this.stats_init[a] }
-        for (let a in this.stats_init) { this.stats_init[a] *= 300/statSum}
-        this.stats_init.health *= 3
-        for (let a in this.stats_init) { this.stats[a] = this.stats_init[a] }
+        this.normalizeStats()
+        
+        // this.stats_init.health *= 3
+        // for (let a in this.stats_init) { this.stats[a] = this.stats_init[a] }
 
         this.attacks = []
         this.elements = []
@@ -37,6 +35,12 @@ class Monster {
 
         
     }// constructor
+
+    normalizeStats() {
+        let statSum = 0
+        for (let a in this.stats_init) { statSum += this.stats_init[a] }
+        for (let a in this.stats_init) { this.stats_init[a] /= statSum}
+    }
 
     setupDiv() {
         this.div = createDiv('','monster-wrapper') // document.createElement('div')
@@ -89,7 +93,7 @@ class Monster {
     }
 
     updateHealth() {
-        let ratio = this.stats['health'] / this.stats_init['health']*19
+        let ratio = this.stats['health'] / this.stats_init['health']/600*19
         this.divs.hpBar.style.width = ratio+'rem'
         this.divs.hpBar.innerHTML = 'HP ( '+this.stats.health.toFixed(1)+' )'
     }
@@ -103,7 +107,8 @@ class Monster {
 
     newFight() {
         this.games += 1
-        for (let a in this.stats_init) { this.stats[a] = this.stats_init[a] }
+        for (let a in this.stats_init) { this.stats[a] = this.stats_init[a]*300 }
+        this.stats.health *= 2
         this.updateHealth()
     }
 

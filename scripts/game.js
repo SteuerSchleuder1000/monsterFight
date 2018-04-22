@@ -1,11 +1,11 @@
 var GAME = null
 var interval = 0
-var interval_sel = 100
+var interval_sel = 1000
 var combatLog = false
 
 window.onload = function() {
     GAME = new Game()
-    setInterval(GAME.tick.bind(GAME), 1);
+    setInterval(GAME.tick.bind(GAME), 0.1);
 }
 
 
@@ -24,7 +24,7 @@ class Game {
         this.pauseBtn.onclick = this.pause.bind(this)
 
         this.monsters = []
-        for (let i=0; i<30; i++) { this.addMonster() }
+        for (let i=0; i<50; i++) { this.addMonster() }
 
 
         this.m1 = null
@@ -140,6 +140,7 @@ class Game {
             if (Math.random() < 0.05) { continue }
             m.stats_init[a] = coin() ? m1.stats_init[a] : m2.stats_init[a] 
         }
+        m.normalizeStats()
 
         for (let i in m.attacks) { 
             if (Math.random() < 0.05) { continue }
