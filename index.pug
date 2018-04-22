@@ -1,8 +1,6 @@
 doctype html
 html(lang='en')
   head
-    //link(rel="icon" href="Images/vsLogo.png")
-    //link(rel='apple-touch-icon-precomposed', size='57x57' href='Images/vsLogo57x57.png')
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
@@ -10,45 +8,16 @@ html(lang='en')
     script(src='https://cdn.plot.ly/plotly-latest.min.js')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='styles.css')
-    title MULLIGAN APP
+    title Monster Fight!
   body
     .main-wrapper
+        .menu
+            .item.fight Fight!
+            .item.info info
+        .fight-wrapper
 
-        .top
-            //- .opponent-wrapper
-            //-     img.opponent
-            //-     .title Opponent
-
-            .inputDiv
-                input(placeholder='Paste Deckcode in here' id='deckinput')
-                button#submitDeck GO!
-                .sliderDiv
-                    input(type='range' min='0' max='25' value='5' class='slider' id='rankSlider')
-                    .rankValue Rank 5
-            
-            //- .hero-wrapper
-            //-     img.hero
-            //-     img.deck(src='Sources/Fireside.png')
-            //-     .title You
-
-
-
-
-        .banner
-        .hand
-        .bottom
-            .opponent-wrapper
-                img.opponent
-                .title Opponent
-            .buttons
-                button#mulligan Confirm
-                button#newGame New Game
-            .hero-wrapper
-                img.hero
-                img.deck(src='Sources/Fireside.png')
-                .title You
-            
-    script(src='script.js')
-    script(src='dbf_handler.js')
-    script(src='player.js')
-    script(src='simulation.js')
+    script(src='scripts/utility.js')
+    script(src='scripts/game.js')
+    script(src='scripts/monster.js')
+    script(src='scripts/attack.js')
+    script(src='scripts/buff.js')

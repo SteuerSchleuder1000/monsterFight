@@ -1,136 +1,90 @@
 
-$mainWidth = 1000px
-$cardHeight = 300px
-$heroHeight = 200px
-$deckHeight = 200px
+
+body
+  font-family: Helvetica;
 
 
-button
-    font-size: 150%
-    font-weight:  bold
-    &:hover
-        cursor pointer
-
-img 
-    &:hover
-        cursor pointer
 
 .main-wrapper
-    width $mainWidth
-    position absolute
-    background #222
-    .top
-        text-align center
-        .inputDiv
-            margin 1rem auto
-            width 25rem
-            display inline-block
-            #deckinput
-                font-size 150%
-                width 20rem
-                color #777
-            #submitDeck
-                font-size: 150%
-                font-weight:  bold
-            .sliderDiv
-                display block
-                #rankSlider
-                    display inline-block
-                    width 20rem
-                .rankValue
-                    display inline-block
-                    color white
-                    font-weight bold
-                    font-family Helvetica
-                    letter-spacing 1px
-    .hand
-        margin 0 auto
-        width $mainWidth
-        height $cardHeight
-        flex-direction row
-        display flex
-        justify-content: center
-        overflow-x auto
-        overflow-y hidden
-        .card-wrapper
-            position relative
-            transition: all 500ms linear;            
-            .card
-                position relative
-                height $cardHeight
-            .cross
-                position absolute
-                left 0
-                width 200px
-                &.hidden
-                    display none
-    .bottom
-        display none
-        text-align center
-        margin-top 2rem
-        margin-bottom 2rem
-        // .opponent-wrapper
-        //     display inline-block            
-        //     float left
-        //     .opponent
-        //         height 
-        //         height $heroHeight
-        //     .title
-        //         display inline-block
-        //         color white
-        //         font-family Helvetica
-        //         font-weight bold
-        .buttons
-            display inline-block
-            width 10rem
-            margin 0 auto
-            #mulligan
-                display block
-                font-weight bold
-                margin 0.2rem auto
-            #newGame
-                display block
-                font-weight bold
-                margin 0.2rem auto
-        // .hero-wrapper
-        //     display inline-block
-        //     float right
-        //     .hero
-        //         height $heroHeight
-        //     .deck
-        //         display inline-block
-        //         height $deckHeight
-        //         float right
-        //     .title
-        //         display inline-block
-        //         color white
-        //         font-family Helvetica
-        //         font-weight bold
-                
 
-.opponent-wrapper
-    display inline-block            
-    float left
-    .opponent
-        height 
-        height $heroHeight
-    .title
-        display block
-        color white
-        font-family Helvetica
-        font-weight bold
-        
-.hero-wrapper
-    display inline-block
-    float right
-    .hero
-        height $heroHeight
-    .deck
-        display inline-block
-        height $deckHeight
-        float right
-    .title
-        display block
-        color white
-        font-family Helvetica
-        font-weight bold
+    .menu
+        position absolute
+        z-index 10
+        margin 0.5rem
+        .item
+            background-color white
+            padding 0.2rem 0.5rem
+            margin 0.2rem
+            border-radius: 0.2rem
+            &:hover
+                cursor pointer
+                background-color green
+                color white
+                
+    .fight-wrapper
+        position absolute
+        margin auto
+        width 80vw
+        height 80vh
+        background-color black
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .monster-wrapper
+            display inline-block
+            background-color white
+            border-radius: 0.3rem
+            width 20rem
+            margin 0.5rem
+            .elements
+                position absolute
+                .element
+                    width 2rem
+                    height 2rem
+                    margin 0.2rem
+                    border-radius: 0.2rem
+                    display inline-block
+                    &.wind
+                        background-color green
+                    &.fire
+                        background-color: red
+                    &.water
+                        background-color blue
+                    &.metal
+                        background-color: grey
+                    &.earth
+                        background-color brown
+                    &.gold
+                        background-color: gold
+                    &.neutral
+                        background-color: light(grey)
+            .name
+                font-size 150%
+                font-weight bold
+                padding 0.3rem
+                text-align center
+            
+            .img
+                height 25vh
+                max-width 100%
+
+            .bar
+                height 20px
+                width 19rem
+                float left
+                margin 0.2rem 
+                padding 0.2rem
+                padding-left 0.5rem
+                color white
+                border-radius 0.2rem
+                &.hp
+                    background-color #c10000
+                &.mana
+                    background-color #3a89ff
+            .attacks
+                margin 0.5rem
+                display inline-block
+                .attack
+                    height 2rem
+                    padding 0.2rem

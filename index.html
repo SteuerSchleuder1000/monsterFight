@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!--link(rel="icon" href="Images/vsLogo.png")-->
-    <!--link(rel='apple-touch-icon-precomposed', size='57x57' href='Images/vsLogo57x57.png')-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,38 +8,20 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
-    <title>MULLIGAN APP</title>
+    <title>Monster Fight!</title>
   </head>
   <body>
     <div class="main-wrapper">
-      <div class="top">
-        <div class="inputDiv">
-          <input placeholder="Paste Deckcode in here" id="deckinput">
-          <button id="submitDeck">GO!</button>
-          <div class="sliderDiv">
-            <input class="slider" type="range" min="0" max="25" value="5" id="rankSlider">
-            <div class="rankValue">Rank 5</div>
-          </div>
-        </div>
+      <div class="menu">
+        <div class="item fight">Fight!</div>
+        <div class="item info">info</div>
       </div>
-      <div class="banner"></div>
-      <div class="hand"></div>
-      <div class="bottom">
-        <div class="opponent-wrapper"><img class="opponent">
-          <div class="title">Opponent</div>
-        </div>
-        <div class="buttons">
-          <button id="mulligan">Confirm</button>
-          <button id="newGame">New Game</button>
-        </div>
-        <div class="hero-wrapper"><img class="hero"><img class="deck" src="Sources/Fireside.png">
-          <div class="title">You</div>
-        </div>
-      </div>
+      <div class="fight-wrapper"></div>
     </div>
-    <script src="script.js"></script>
-    <script src="dbf_handler.js"></script>
-    <script src="player.js"></script>
-    <script src="simulation.js"></script>
+    <script src="scripts/utility.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/monster.js"></script>
+    <script src="scripts/attack.js"></script>
+    <script src="scripts/buff.js"></script>
   </body>
 </html>
