@@ -4,6 +4,22 @@ body
   font-family: Helvetica;
 
 
+.element
+    &.wind
+        background-color green
+    &.fire
+        background-color: red
+    &.water
+        background-color blue
+    &.metal
+        background-color: grey
+    &.earth
+        background-color brown
+    &.gold
+        background-color: gold
+    &.neutral
+        background-color: light(grey)
+
 
 .main-wrapper
 
@@ -45,20 +61,7 @@ body
                     margin 0.2rem
                     border-radius: 0.2rem
                     display inline-block
-                    &.wind
-                        background-color green
-                    &.fire
-                        background-color: red
-                    &.water
-                        background-color blue
-                    &.metal
-                        background-color: grey
-                    &.earth
-                        background-color brown
-                    &.gold
-                        background-color: gold
-                    &.neutral
-                        background-color: light(grey)
+                    
             .name
                 font-size 150%
                 font-weight bold
@@ -78,6 +81,7 @@ body
                 padding-left 0.5rem
                 color white
                 border-radius 0.2rem
+                white-space: nowrap
                 &.hp
                     background-color #c10000
                 &.mana
@@ -88,3 +92,9 @@ body
                 .attack
                     height 2rem
                     padding 0.2rem
+                    .element
+                        margin-left: 1rem
+                        height 1rem
+                        width: 1rem
+                        border-radius: 0.1rem
+                        display inline-block
